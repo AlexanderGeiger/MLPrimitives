@@ -3,14 +3,13 @@
     "contributors": [
         "Alexander Geiger <geigera@mit.edu>"
     ],
-    "documentation": "https://arxiv.org/pdf/1802.04431.pdf",
-    "description": "Double Stacked LSTM Time Series Regressor similar to the one described in the paper referenced as documentation.",
+    "description": "ARIMA Model",
     "classifiers": {
         "type": "estimator",
         "subtype": "regressor"
     },
     "modalities": [],
-    "primitive": "mlprimitives.adapters.statsmodels.ARIMAclass",
+    "primitive": "mlprimitives.adapters.statsmodels.ARIMAMODEL",
     "fit": {
         "method": "fit",
         "args": [
