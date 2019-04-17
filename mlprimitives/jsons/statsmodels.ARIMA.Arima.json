@@ -1,0 +1,42 @@
+{
+    "name": "statsmodels.ARIMA.Arima",
+    "contributors": [
+        "Alexander Geiger <geigera@mit.edu>"
+    ],
+    "documentation": "https://arxiv.org/pdf/1802.04431.pdf",
+    "description": "Double Stacked LSTM Time Series Regressor similar to the one described in the paper referenced as documentation.",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "regressor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.statsmodels.ARIMAclass",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "ndarray"
+            }
+        ]
+    }
+}

@@ -25,12 +25,8 @@
         ],
         "output": [
             {
-                "name": "anomaly_sequences",
-                "type": "list"
-            },
-            {
-                "name": "anomalies_scores",
-                "type": "list"
+                "name": "anomalies",
+                "type": "ndarray"
             }
         ]
     },
@@ -38,11 +34,11 @@
         "tunable": {
             "window_size": {
                 "type": "int",
-                "default": 50
+                "default": 5
             },
             "batch_size": {
                 "type": "int",
-                "default": 200
+                "default": 30
             },
             "error_buffer": {
                 "type": "int",

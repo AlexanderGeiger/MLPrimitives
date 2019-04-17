@@ -69,12 +69,14 @@ class Sequential(object):
         self.hyperparameters = hyperparameters
 
     def fit(self, X, y, **kwargs):
+        cbs = [keras.callbacks.History(), keras.callbacks.EarlyStopping(monitor='val_loss', patience=10,
+                                        min_delta=0.0003, verbose=0)]
         self.model = self._build_model(**kwargs)
-
+        print(self.model.summary())
         if self.classification:
             y = keras.utils.to_categorical(y)
 
-        self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose)
+        self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose, shuffle=False, batch_size=64, callbacks=cbs)
 
     def predict(self, X):
         y = self.model.predict(X)

@@ -24,6 +24,7 @@ def get_forecast_errors(y_hat,
     Returns:
         (list): error residuals. Smoothed if specified by user.
     """
+
     errors = [abs(y_h - y_t) for y_h, y_t in zip(y_hat, y_true)]
 
     if not smoothed:
@@ -112,7 +113,7 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
     anomaly_sequences = [(g[0], g[-1]) for g in anomalies_groups if not g[0] == g[-1]]
 
     # generate "scores" for anomalies based on the max distance from epsilon for each sequence
-    anomalies_scores = []
+    anomalies = []
     for e_seq in anomaly_sequences:
         denominator = np.mean(smoothed_errors) + np.std(smoothed_errors)
         score = max([
@@ -120,9 +121,9 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
             for x in range(e_seq[0], e_seq[1])
         ])
 
-        anomalies_scores.append(score)
+        anomalies.append([e_seq[0], e_seq[1], score])
 
-    return anomaly_sequences, anomalies_scores
+    return np.asarray(anomalies)
 
 
 def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
