@@ -15,7 +15,7 @@ class ARIMAMODEL(object):
     def __init__(self, **hyperparameters):
         self.hyperparameters = hyperparameters
 
-    def fit(self, X, index, **kwargs):
+    def fit(self, X, index):
         X_conc = np.column_stack((index, X.flatten()))
         X_conc = pd.DataFrame(X_conc)
         X_conc = X_conc.sort_values(0).set_index(0)
@@ -23,6 +23,5 @@ class ARIMAMODEL(object):
         self.model = self.model.fit(disp=0)
 
     def predict(self, X):
-        print(len(X))
         y = self.model.forecast(len(X))
         return y[0]

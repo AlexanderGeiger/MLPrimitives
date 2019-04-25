@@ -32,13 +32,17 @@
     },
     "hyperparameters": {
         "fixed": {
-            "interval": {
-                "type": "int",
-                "default": 3200
-            },
             "time_column": {
                 "type": "str or int",
                 "default": 0
+            },
+            "N": {
+                "type": "int",
+                "default": 5
+            },
+            "Wn": {
+                "type": "float",
+                "default": 0.05
             }
         }
     }

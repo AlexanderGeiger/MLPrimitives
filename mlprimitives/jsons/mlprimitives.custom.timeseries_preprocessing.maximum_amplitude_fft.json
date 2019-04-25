@@ -47,6 +47,10 @@
             "interval": {
                 "type": "int",
                 "default": 7
+            },
+            "window_size": {
+                "type": "int",
+                "default": 3
             }
         }
     }

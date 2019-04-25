@@ -1,5 +1,5 @@
 {
-    "name": "keras.Sequential.LSTMTimeSeriesRegressorTest",
+    "name": "keras.Sequential.LSTMSeq2Seq",
     "contributors": [
         "Ihssan Tinawi <itinawi@mit.edu>",
         "Carles Sala <csala@csail.mit.edu>"
@@ -21,7 +21,7 @@
             },
             {
                 "name": "y",
-                "type": "ndarray"
+                "type": "array"
             }
         ]
     },
@@ -36,7 +36,7 @@
         "output": [
             {
                 "name": "y",
-                "type": "ndarray"
+                "type": "array"
             }
         ]
     },
@@ -56,7 +56,12 @@
             "dense_units": {
                 "type": "int",
                 "description": "Number of values ahead to predict",
-                "default": 10
+                "default": 1
+            },
+            "target_shape": {
+                "type": "tuple",
+                "description": "Shape of target",
+                "default": [250]
             },
             "optimizer": {
                 "type": "str",
@@ -101,7 +106,7 @@
                         "class": "keras.layers.LSTM",
                         "parameters": {
                             "units": "lstm_2_units",
-                            "return_sequences": false
+                            "return_sequences": true
                         }
                     },
                     {
@@ -115,6 +120,12 @@
                         "parameters": {
                             "units": "dense_units",
                             "activation": "linear"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Reshape",
+                        "parameters": {
+                            "target_shape": "target_shape"
                         }
                     }
                 ]

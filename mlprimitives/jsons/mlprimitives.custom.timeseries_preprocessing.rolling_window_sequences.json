@@ -50,7 +50,7 @@
             },
             "target_size": {
                 "type": "int",
-                "default": 1
+                "default": 10
             },
             "target_column": {
                 "type": "str or int",

@@ -76,7 +76,8 @@ class Sequential(object):
         if self.classification:
             y = keras.utils.to_categorical(y)
 
-        self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose, shuffle=False, batch_size=64, callbacks=cbs)
+        self.model.fit(X, y, epochs=self.epochs, validation_split=0.1, verbose=self.verbose, shuffle=False,
+                       batch_size=64, callbacks=cbs)
 
     def predict(self, X):
         y = self.model.predict(X)
