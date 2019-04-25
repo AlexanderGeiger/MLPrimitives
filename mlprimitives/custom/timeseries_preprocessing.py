@@ -2,6 +2,7 @@ import warnings
 
 import numpy as np
 import pandas as pd
+import scipy.signal as signal
 
 
 def rolling_window_sequences(X, index, window_size, target_size, target_column):
@@ -82,3 +83,12 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
         start_ts = end_ts
 
     return np.asarray(values), np.asarray(index)
+
+
+def butterworth_filter(X, time_column, N, Wn):
+    """Apply the Butterworth filter to the signal"""
+    X = X.sort_values(time_column).set_index(time_column)
+    B, A = signal.butter(N, Wn, output='ba')
+    filtered_data = signal.filtfilt(B, A, np.asarray(X)[:, 0])
+
+    return np.reshape(np.asarray(filtered_data), (-1, 1)), np.asarray(X.index.values)
